@@ -1,0 +1,24 @@
+# Render Blueprint — creates the free API web service from this repo.
+# The database lives on Neon (free, does not expire); paste its URL as DATABASE_URL.
+services:
+  - type: web
+    name: smart-english-api
+    runtime: python
+    plan: free
+    region: ohio            # same region as the Neon database (AWS US East 2, Ohio)
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:create_app --factory --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips=*
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: ENVIRONMENT
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false            # Render asks you for it: paste the Neon connection string
+      - key: CORS_ORIGINS
+        sync: false            # e.g. https://YOUR-GITHUB-NAME.github.io

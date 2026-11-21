@@ -1,0 +1,13 @@
+.env
+*.env.local
+__pycache__/
+.pytest_cache/
+.venv/
+.ruff_cache/
+# iOS
+ios/*.xcodeproj
+ios/build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+.DS_Store
