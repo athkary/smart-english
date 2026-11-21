@@ -1,5 +1,5 @@
 // ⚙️ The ONLY line to change after deploying the backend on Render:
-const PRODUCTION_API = "https://smart-english-api.onrender.com";
+const PRODUCTION_API = "https://smart-english-api-r0zg.onrender.com";
 
 // Local development: page served from localhost/127.0.0.1 talks to a local API on :8000.
 const isLocal = ["localhost", "127.0.0.1"].includes(location.hostname);
